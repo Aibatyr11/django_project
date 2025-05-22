@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="banner">
+    <div class="banner-text">
+      <h1>Интернет-магазин</h1>
+      <p>Делать покупки еще проще и выгоднее!</p>
+      <ul>
+        <li>🛒 Добавляйте товары в корзину</li>
+        <li>💳 Оплачивайте</li>
+        <li>🚚 Доставка от 100000₸ — бесплатно</li>
+      </ul>
+    </div>
+    <img src="media/films_images/slide.png" class="phone-img">
+  </section>
+
+
+ <section class="categories">
+  {% for rubric in rubrics %}
+    <div class="category">
+      <a href="{% url 'bboard:rubric_detail' slug=rubric.slug %}">
+
+        <img class="rubric-image" src="{{ rubric.image.url }}" alt="{{ rubric.name }}">
+      </a>
+      <div class="rubric-name">{{ rubric.name }}</div>
+    </div>
+  {% endfor %}
+</section>
+
+
+
+
+{% endblock %}

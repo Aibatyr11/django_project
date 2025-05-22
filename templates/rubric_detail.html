@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'style.css' %}">
+{% block content %}
+  <h1>Товары в категории: {{ rubric.name }}</h1>
+<form method="get" class="filter-form">
+  <label for="sort">Сортировка:</label>
+  <select name="sort" id="sort" onchange="this.form.submit()">
+    <option value="">Без сортировки</option>
+    <option value="cheap" {% if selected_sort == 'cheap' %}selected{% endif %}>Сначала дешевые</option>
+    <option value="expensive" {% if selected_sort == 'expensive' %}selected{% endif %}>Сначала дорогие</option>
+  </select>
+
+  <label for="brand">Бренд:</label>
+  <input type="text" name="brand" id="brand" value="{{ selected_brand }}" />
+  <button type="submit">Фильтровать</button>
+</form>
+
+  <div class="products">
+  {% for item in page_obj %}
+    <div class="product">
+      {% if item.images.first %}
+        <a href="{% url 'bboard:product_detail' slug=item.slug %}">
+          <img class="product-img" src="{{ item.images.first.image.url }}" alt="Изображение товара">
+        </a>
+      {% endif %}
+      <h3>{{ item.title }}</h3>
+      <p>Цена: {{ item.price }} ₸</p>
+    </div>
+  {% endfor %}
+</div>
+
+<!-- Пагинация -->
+<div class="pagination">
+  {% if page_obj.has_previous %}
+    <a href="?{% if selected_sort %}sort={{ selected_sort }}&{% endif %}{% if selected_brand %}brand={{ selected_brand }}&{% endif %}page={{ page_obj.previous_page_number }}">« Назад</a>
+  {% endif %}
+
+  <span>Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span>
+
+  {% if page_obj.has_next %}
+    <a href="?{% if selected_sort %}sort={{ selected_sort }}&{% endif %}{% if selected_brand %}brand={{ selected_brand }}&{% endif %}page={{ page_obj.next_page_number }}">Вперёд »</a>
+  {% endif %}
+</div>
+
+{% endblock %}

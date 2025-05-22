@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form method="post" action="{% url 'bboard:update_cart' %}">
+  {% csrf_token %}
+  <h1 class="cart-h1">Ваша корзина</h1>
+  <table class="cart-table">
+    <thead class="cart-thead">
+      <tr>
+        <th>Фото</th>
+        <th>Товар</th>
+        <th>Магазин</th>
+        <th>Цена</th>
+        <th>Количество</th>
+        <th>Сумма</th>
+        <th>Удалить</th>
+      </tr>
+    </thead>
+    <tbody class="cart-tbody">
+      {% for item in items %}
+      <tr>
+  <td>
+    {% with first_image=item.bb.images.first %}
+      {% if first_image and first_image.image %}
+        <img src="{{ first_image.image.url }}" alt="{{ item.bb.title }}" class="cart-img" />
+      {% else %}
+        <span>Нет фото</span>
+      {% endif %}
+    {% endwith %}
+  </td>
+  <td>{{ item.bb.title }}</td>
+  <td>{{ item.shop.name }}</td>
+  <td>{{ item.price }} ₸</td>
+  <td><input class="cart-input-number" type="number" name="quantity_{{ item.id }}" value="{{ item.quantity }}" min="1"></td>
+  <td>{{ item.total_price }} ₸</td>
+  <td><a class="cart-link" href="{% url 'bboard:remove' item.id %}">Удалить</a></td>
+</tr>
+
+      {% empty %}
+      <tr><td colspan="7">Корзина пуста</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% if items %}
+    <p class="cart-total">Общая сумма: {{ total }} ₸</p>
+    <button class="cart-button" type="submit">Обновить количество</button>
+  {% endif %}
+</form>
+{% endblock %}

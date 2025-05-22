@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Поиск товаров</h2>
+
+<form method="post" class="search-form">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="search-button">Поиск</button>
+</form>
+
+
+  {% if bbs %}
+    <h3>Результаты:</h3>
+    <div class="product-list">
+      {% for bb in bbs %}
+        <div class="product-card">
+          <div class="product-image-wrapper">
+            <img src="{{ bb.images.first.image.url }}" alt="Товар">
+
+          </div>
+          <div class="product-info">
+            <a href="{% url 'bboard:product_detail' slug=bb.slug %}" class="product-title">{{ bb.title }}</a>
+
+            <div class="price-section">
+              <div>
+                <span class="label">Цена</span><br>
+                <span class="price">{{ bb.price }} ₸</span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% elif form.is_bound %}
+    <h3>Результатов нет</h3>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Shop.kz</title>
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+  <header>
+  <div class="main-menu">
+    <a href="{% url 'bboard:rubric' %}">Главная</a>
+    {% for r in rubrics %}
+      <a href="{% url 'bboard:rubric_detail' slug=r.slug %}">{{ r.name }}</a>
+    {% endfor %}
+
+    {% if request.user.is_authenticated and request.user.is_staff %}
+      <a href="{% url 'bboard:add_product' %}" class="admin-button">Добавить товар</a>
+    {% endif %}
+
+
+  </div>
+
+
+  <div class="logo">SHOP.kz</div>
+
+  <div class="top-bar">
+    <div class="search-bar">
+      <span class="store">Магазин</span>
+      <form method="get" action="{% url 'bboard:search' %}">
+
+        <button type="submit" class="search-button">Поиск</button>
+
+      </form>
+
+
+    </div>
+    <div class="city">Мой город: <a href="#">Алматы</a></div>
+  </div>
+</header>
+
+
+  <main>
+    {% block content %}
+    {% endblock %}
+  </main>
+</body>
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-section">
+      <h4>О нас</h4>
+      <p>SHOP.kz — ваш надёжный онлайн-магазин техники. Только оригинальные товары и быстрая доставка.</p>
+    </div>
+    <div class="footer-section">
+      <h4>Контакты</h4>
+      <p>Email: support@shop.kz</p>
+      <p>Тел: +7 (727) 123-45-67</p>
+    </div>
+    <div class="footer-section">
+      <h4>Мы в соцсетях</h4>
+      <div class="social-icons">
+        <a href="#"><img src="{% static 'icons/telegram.svg' %}" alt="Telegram"></a>
+        <a href="#"><img src="{% static 'icons/instagram.svg' %}" alt="Instagram"></a>
+        <a href="#"><img src="{% static 'icons/facebook.svg' %}" alt="Facebook"></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2025 SHOP.kz — Все права защищены.
+  </div>
+</footer>
+с
+</html>

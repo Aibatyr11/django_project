@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="product-page">
+  <div class="product-container">
+
+    <!-- Изображения -->
+    <div class="product-images">
+      {% if product.images.all %}
+        <div class="main-image-container">
+          {% for image in product.images.all %}
+            <input type="radio" id="image{{ forloop.counter }}" name="image" {% if forloop.first %}checked{% endif %} hidden>
+            <label for="image{{ forloop.counter }}">
+              <img src="{{ image.image.url }}" alt="product image {{ forloop.counter }}" class="main-image">
+            </label>
+          {% endfor %}
+        </div>
+
+        <!-- Превью -->
+        <div class="thumbnails">
+          {% for image in product.images.all %}
+            <label for="image{{ forloop.counter }}">
+              <img class="thumbnails_img" src="{{ image.image.url }}" alt="preview {{ forloop.counter }}" {% if forloop.first %}class="active"{% endif %}>
+            </label>
+          {% endfor %}
+        </div>
+
+
+      {% else %}
+        <p>Нет изображений</p>
+      {% endif %}
+
+      <p class="zoom-text">Чтобы увеличить, нажмите на картинку</p>
+    </div> <!-- .product-images -->
+
+    <!-- Информация о товаре -->
+    <div class="product-details">
+      <h1>{{ product.title }}</h1>
+      <div class="price-block">
+        <div class="price">Цена:
+          <strong>{{ product.price }} ₸</strong>
+        </div>
+      </div>
+
+       <!-- YouTube видео -->
+        <div class="youtube-container">
+          <iframe width="860" height="515"
+                  src="{{ product.youtube_link }}"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen>
+          </iframe>
+        </div>
+
+      <div class="product_content">
+
+        <h4>{{ product.content }}</h4>
+      </div>
+
+
+
+
+    </div> <!-- .product-details -->
+
+  </div> <!-- .product-container -->
+
+  <!-- Таблица продавцов перенесена сюда -->
+  <div class="sellers-container">
+    <table class="sellers-table">
+      <thead>
+        <tr>
+          <th>Продавец</th>
+          <th>Условия</th>
+          <th>Цена</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for sp in shop_prices %}
+          <tr>
+            <td><a href="#">{{ sp.shop.name }}</a><br><span class="rating">★★★★★ (70 отзывов)</span></td>
+            <td>Доставка, <strong>сегодня</strong>, бесплатно</td>
+            <td>{{ sp.price }} ₸</td>
+            <td><td><a href="{% url 'bboard:add_to_cart' sp.id %}" target="_blank" class="choose-btn">Выбрать</a></td>
+</td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="4">Нет доступных магазинов для данного товара.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div> <!-- .sellers-container -->
+</div> <!-- .product-page -->
+{% endblock %}

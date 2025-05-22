@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="form-container">
+    <h2>Добавить товар</h2>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+
+      <h3>Фото</h3>
+      {{ formset.management_form }}
+      {% for image_form in formset %}
+        {{ image_form.image.label_tag }} {{ image_form.image }}
+      {% endfor %}
+
+      <button type="submit">Сохранить</button>
+    </form>
+  </div>
+{% endblock %}
