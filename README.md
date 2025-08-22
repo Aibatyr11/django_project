@@ -48,7 +48,6 @@ project/
 
 ### 1. Клонирование проекта
 Склонируйте репозиторий с GitHub:
-```bash
 git clone https://github.com/Aibatyr11/django_project.git
 cd project/pythonProject/project
 
@@ -77,7 +76,7 @@ python manage.py runserver
 http://127.0.0.1:8000/
 
 Скриншоты
-
+https://github.com/Aibatyr11/django_project/blob/9c619788bd1c70df91aec1b584ed97c1f6e9a922/screenshots/product.png
 
 Цель проекта
 
