@@ -77,9 +77,12 @@ http://127.0.0.1:8000/
 
 Скриншоты
 ![image alt](https://github.com/Aibatyr11/django_project/blob/9c619788bd1c70df91aec1b584ed97c1f6e9a922/screenshots/product.png)
+
 ![image alt](https://github.com/Aibatyr11/django_project/blob/32db9717251ffe112134f3050920ef202ce84efb/screenshots/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-08-22%20150841.png)
-![image alt]([https://github.com/Aibatyr11/django_project/blob/9c619788bd1c70df91aec1b584ed97c1f6e9a922/screenshots/product.png](https://github.com/Aibatyr11/django_project/blob/32db9717251ffe112134f3050920ef202ce84efb/screenshots/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-08-22%20150922.png))
-![image alt]([https://github.com/Aibatyr11/django_project/blob/9c619788bd1c70df91aec1b584ed97c1f6e9a922/screenshots/product.png](https://github.com/Aibatyr11/django_project/blob/32db9717251ffe112134f3050920ef202ce84efb/screenshots/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-08-22%20151012.png))
+
+![image alt](https://github.com/Aibatyr11/django_project/blob/b8a821fd2397c6c2906c1b43e89aca642a5d3a7f/screenshots/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-08-22%20151012.png)
+
+![image alt](https://github.com/Aibatyr11/django_project/blob/32db9717251ffe112134f3050920ef202ce84efb/screenshots/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-08-22%20151012.png)
 
 Цель проекта
 
